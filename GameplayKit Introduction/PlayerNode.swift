@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import GameplayKit
 
 class PlayerNode: SKShapeNode {
     
@@ -25,5 +26,13 @@ class PlayerNode: SKShapeNode {
                 self.runAction(SKAction.fadeInWithDuration(2.0))
             }
         }
+    }
+    
+    var entity = Player()
+    
+    var stateMachine: GKStateMachine!
+
+    func enterNormalState() {
+        self.stateMachine.enterState(NormalState)
     }
 }

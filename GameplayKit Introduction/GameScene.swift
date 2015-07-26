@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -46,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.downDisplayTimer = NSTimer(timeInterval: 1.0/60.0, target: self, selector: "moveDown", userInfo: nil, repeats: true)
         self.leftDisplayTimer = NSTimer(timeInterval: 1.0/60.0, target: self, selector: "moveLeft", userInfo: nil, repeats: true)
         
-        self.respawnTimer = NSTimer(timeInterval: 1.0/60.0, target: self, selector: "respawn", userInfo: nil, repeats: true)
+        self.respawnTimer = NSTimer(timeInterval: 1.0, target: self, selector: "respawn", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(self.respawnTimer, forMode: NSRunLoopCommonModes)
         
         self.camera = cameraNode
@@ -63,6 +64,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(playerNode)
         self.initialSpawn()
+        
+        playerNode.stateMachine = GKStateMachine(states: [NormalState(withNode: playerNode), InvulnerableState(withNode: playerNode)])
+        playerNode.stateMachine.enterState(NormalState)
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -87,10 +91,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if contact is PointsNode {
             NSNotificationCenter.defaultCenter().postNotificationName("updateScore", object: self, userInfo: ["score": 1])
         }
-        else if contact is RedEnemyNode {
+        else if contact is RedEnemyNode && playerNode.stateMachine.currentState! is NormalState {
             NSNotificationCenter.defaultCenter().postNotificationName("updateScore", object: self, userInfo: ["score": -2])
+            
+            playerNode.stateMachine.enterState(InvulnerableState)
+            playerNode.performSelector("enterNormalState", withObject: nil, afterDelay: 5.0)
         }
-        else if contact is YellowEnemyNode {
+        else if contact is YellowEnemyNode  && playerNode.stateMachine.currentState! is NormalState  {
             self.playerNode.enabled = false
         }
         
