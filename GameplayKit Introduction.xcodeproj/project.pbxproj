@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		605281631B77076900D862A8 /* PlayerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605281621B77076900D862A8 /* PlayerAgent.swift */; };
 		60679B541B5BADC1006D840E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60679B531B5BADC1006D840E /* AppDelegate.swift */; };
 		60679B561B5BADC1006D840E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 60679B551B5BADC1006D840E /* GameScene.sks */; };
 		60679B581B5BADC1006D840E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60679B571B5BADC1006D840E /* GameScene.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		605281621B77076900D862A8 /* PlayerAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerAgent.swift; sourceTree = "<group>"; };
 		60679B501B5BADC1006D840E /* GameplayKit Introduction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GameplayKit Introduction.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60679B531B5BADC1006D840E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60679B551B5BADC1006D840E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		605281601B77056D00D862A8 /* Agents */ = {
+			isa = PBXGroup;
+			children = (
+				605281621B77076900D862A8 /* PlayerAgent.swift */,
+			);
+			name = Agents;
+			sourceTree = "<group>";
+		};
 		60679B471B5BADC1006D840E = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				606F3CA71B648701009A077B /* Entities */,
 				606F3CA81B648706009A077B /* Components */,
 				606F3CB01B6487A1009A077B /* State Machine */,
+				605281601B77056D00D862A8 /* Agents */,
 				60679B5B1B5BADC1006D840E /* Main.storyboard */,
 				60679B5E1B5BADC1006D840E /* Assets.xcassets */,
 				60679B601B5BADC1006D840E /* LaunchScreen.storyboard */,
@@ -217,6 +228,7 @@
 				60E3D9AB1B64ADAC00093821 /* Player.swift in Sources */,
 				60679B581B5BADC1006D840E /* GameScene.swift in Sources */,
 				606F3CB71B6487EA009A077B /* YellowEnemy.swift in Sources */,
+				605281631B77076900D862A8 /* PlayerAgent.swift in Sources */,
 				60679B5A1B5BADC1006D840E /* GameViewController.swift in Sources */,
 				60E3D9B11B64BBF700093821 /* InvulnerableState.swift in Sources */,
 				606F3CB21B6487C9009A077B /* Points.swift in Sources */,
