@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class PlayerNode: SKShapeNode {
+class PlayerNode: SKShapeNode, GKAgentDelegate {
     
     var enabled = true {
         didSet {
@@ -25,6 +25,29 @@ class PlayerNode: SKShapeNode {
                 
                 self.runAction(SKAction.fadeInWithDuration(2.0))
             }
+        }
+    }
+    
+    var entity = Player()
+    
+    var stateMachine: GKStateMachine!
+
+    func enterNormalState() {
+        self.stateMachine.enterState(NormalState)
+    }
+    
+    var agent = GKAgent2D()
+    
+    //  MARK: Agent Delegate
+    func agentWillUpdate(agent: GKAgent) {
+        if let agent2D = agent as? GKAgent2D {
+            agent2D.position = float2(Float(position.x), Float(position.y))
+        }
+    }
+
+    func agentDidUpdate(agent: GKAgent) {
+        if let agent2D = agent as? GKAgent2D {
+            self.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))
         }
     }
 }
